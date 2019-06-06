@@ -6,10 +6,6 @@
   "scripts": {
     "test": "node topGit.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/anouarbensaad/topGit.git"
-  },
   "author": {
     "name": "anouarbensaad",
     "email": "bensaad.tig@gmail.com"
