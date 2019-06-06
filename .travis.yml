@@ -2,11 +2,5 @@ sudo: false
 language: node_js
 node_js:
 - stable
-- '11'
 - '10'
-- '9'
-- '8'
 dist: trusty
-#cache:
-#  directories:
-#- node_modules
