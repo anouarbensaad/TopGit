@@ -11,7 +11,11 @@
     "url": "https://github.com/anouarbensaad/topGit.git"
   },
   "author": {
-    "name":"anouarbensaad",
-    "email":"bensaad.tig@gmail.com"},
-  "license": "ISC"
+    "name": "anouarbensaad",
+    "email": "bensaad.tig@gmail.com"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "request": "^2.88.0"
+  }
 }
