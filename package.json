@@ -4,7 +4,7 @@
   "description": "chrome extension for the github topics ranking.searching for repository topics_rank and set level power to repository.",
   "main": "topGit.js",
   "scripts": {
-    "test": "node topGit.js"
+    "test": "node extension/topGit.js"
   },
   "author": {
     "name": "anouarbensaad",
