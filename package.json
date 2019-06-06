@@ -1,11 +1,21 @@
 {
   "name": "top-git",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "chrome extension for the github topics ranking.searching for repository topics_rank and set level power to repository.",
+  "main": "topGit.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node topGit.js"
   },
-  "author": "anouarbensaad",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anouarbensaad/topGit.git"
+  },
+  "author": {
+    "name": "anouarbensaad",
+    "email": "bensaad.tig@gmail.com"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "request": "^2.88.0"
+  }
 }
