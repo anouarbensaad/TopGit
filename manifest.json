@@ -1,0 +1,26 @@
+{
+"manifest_version" : 2,
+"description":"Github topics ranking power. Searching for repository topics rank and markup with power level like ",
+"name": "TopGit",
+"version" : "1.0.0",
+"permissions": [
+    "https://*/"
+  ],
+  "icons": { "16": "config/icon.png",
+    "48": "config/icon.png",
+   "128": "config/icon.png" },
+"content_scripts" : [
+    {
+    "matches": [
+        "https://*.github.com/*"
+    ],
+    "js": ["topGit.js"]
+}
+],
+    "background":{
+        "script" : ["modules/background.js"]
+    },
+    "browser_action": {
+        "default_icon": "config/icon.png"
+    }
+}

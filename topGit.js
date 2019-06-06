@@ -128,6 +128,13 @@ function rankTopics(topic){
     })// end sendrequest.
 }// end function ranktopic
 
+//let topicFind = document.getElementsByClassName("overall-summary overall-summary-bottomless");
+
+//    for (suggestTopic of topicFind){
+//        suggestTopic.style['background-color'] = '#FF0FF';
+//    }
+//    chrome.runtime.onMessage.addListener(getTopics)
+
 getTopics((topics) => {
     var parseTopic = JSON.parse(topics)
     parseTopic.names.forEach(topic => {
