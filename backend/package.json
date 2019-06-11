@@ -1,0 +1,16 @@
+{
+  "name": "tgbe",
+  "version": "1.0.0",
+  "description": "this is a TopGit Backend server.",
+  "main": "beserver.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "anouarbensaad",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.17.1",
+    "express-session": "^1.16.1",
+    "request": "^2.88.0"
+  }
+}

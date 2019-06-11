@@ -12,6 +12,11 @@
   },
   "license": "ISC",
   "devDependencies": {
+    "express": "^4.17.1",
+    "express-session": "^1.16.1",
     "request": "^2.88.0"
+  },
+  "dependencies": {
+    "xmlhttprequest": "^1.8.0"
   }
 }

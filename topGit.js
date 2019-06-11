@@ -1,70 +1,20 @@
-// request lib.
-var request = require('request')
-
-// api github root
-let API_URL = 'https://api.github.com'
-
-// normal github root
-let GIT_URL = 'https://github.com/topics/'
-
-// header for api github url
-let headers = {
-    'Accept'              :     'application/vnd.github.mercy-preview+json',
-    'Content-Type'        :     'application/json; charset=utf-8',   
-    'X-GitHub-Media-Type' :     'github.v3',
-    'Host'                :     'api.github.com',
-    'Connection'          :     'keep-alive',
-    'User-Agent'          :     'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3187.0 Safari/537.36',
-}
-
-// header for normal github url
-let headers2 = {
-    'Host'                :     'github.com',
-    'Connection'          :     'Keep-Alive',
-    'User-Agent'          :     'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3187.0 Safari/537.36',
-    'Accept'              :     'application/*'
-}
-
+var requester = require('./common/requester').requester
+requester = new requester
+exports.TopGit = TopGit
+function TopGit(){
+    const self = {}
 // request function api github.
-function sendRequest(endpoint,callback){
-    // get request
-    request.get({
-        // send headers.
-        headers: headers,
-        // api.github & endpoint worked in.
-        url: API_URL + endpoint,
-    // callback request.get
-    },(err, response, data) => {
-        // in case of error return NULL
-        if (err)
-            callback(null)
-        else {
-        // in case of success return data
-            callback(data)}
-    })
-}
-
-// request function for normal url github.
-function sendRequest2(endpoint,callback){
-    request.get({
-        headers: headers2,
-        url: GIT_URL + endpoint,
-    },(err, response, body) => {
-        if (err)
-            callback(null)
-        else {
-            callback(body)}
-    })
-}
-function getTopics(gtCallback){
+self.getTopics = function(callback){
     endpoint = '/repos/anouarbensaad/vulnx/topics'
-    return sendRequest(endpoint,(topics) => {
-        gtCallback(topics)
+    return requester.sendRequest(endpoint,(topics) => {
+        callback({
+            success : true,
+            response: topics
+        })
 })// end of sendRequest followings ..
 }
-
-function rankTopics(topic){
-    return sendRequest2(topic,(data)=>{
+self.rankTopics = function (topic,callback){
+    return requester.sendRequest2(topic,(data)=>{
         try {
             if (data != null){
                 // regular expression for topic && matching group for topicname.
@@ -105,25 +55,36 @@ function rankTopics(topic){
                             if (i < 3){
                                 repoJSON['power'] = power.good
                                 repoJSON['color'] = color.good
+                                callback({
+                                    success : true,
+                                    response: repoJSON
+                                })
                             }// end condition good rank
                             else if ((i > 3) && (i < 9)){
                                 repoJSON['power'] = power.normal
                                 repoJSON['color'] = color.normal
+                                callback({
+                                    success : true,
+                                    response: repoJSON
+                                })
                             }// end condition normal rank
                             else if (i > 10){
                                 repoJSON['power'] = power.bad
                                 repoJSON['color'] = color.bad
+                                callback({
+                                    success : true,
+                                    response: repoJSON
+                                })
                             }// end condition bad rank
-                            console.log('----------------------------------\nTOPIC : '
-                            +repoJSON.topic 
-                            + '\nRANK  : '+repoJSON.rank+'\nPOWER: '+repoJSON.power+'\nCOLOR: '+repoJSON.color
-                            +'\n----------------------------------')
                         }// end condition matching true
                     }// end condition name != undefined
                 })// endloop
             }//end condition if data not null
         }catch (err){
-            console.log('\x1b[91m%s\x1b[0m','Unknown error occured : '+err)
+            callback({
+                success : false,
+                response: null
+            })
         }                           
     })// end sendrequest.
 }// end function ranktopic
@@ -134,10 +95,6 @@ function rankTopics(topic){
 //        suggestTopic.style['background-color'] = '#FF0FF';
 //    }
 //    chrome.runtime.onMessage.addListener(getTopics)
+return self
+}
 
-getTopics((topics) => {
-    var parseTopic = JSON.parse(topics)
-    parseTopic.names.forEach(topic => {
-        rankTopics(topic)
-    })
-})
