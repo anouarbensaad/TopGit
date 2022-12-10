@@ -9,7 +9,7 @@
   "author": "anouarbensaad",
   "license": "ISC",
   "devDependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-session": "^1.16.1",
     "request": "^2.88.0"
   }
